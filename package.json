@@ -1,9 +1,9 @@
 {
-    "name": "@liberation-data/drivine-inspiration",
+    "name": "drivine-instagram-scraper",
     "version": "0.0.1",
-    "description": "A sample application (or starter template) for drivine.",
-    "author": "Jasper Blues | Liberation Data",
-    "license": "Apache2.0",
+    "description": "A Nest instagram scaper that uses drivine with Neo4j.",
+    "author": "Abdul Rahman Khankan",
+    "license": "Apache-2.0",
     "keywords": [
         "graph",
         "graph database",
