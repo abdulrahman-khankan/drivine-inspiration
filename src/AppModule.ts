@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import { DrivineModule, DrivineModuleOptions } from '@liberation-data/drivine/DrivineModule';
 import { DatabaseRegistry } from '@liberation-data/drivine/connection/DatabaseRegistry';
 
-import { QueryModule } from './photo';
+import { PhotoModule } from './photo';
 
 @Module({
   imports: [
     DrivineModule.withOptions(<DrivineModuleOptions>{
       connectionProviders: [DatabaseRegistry.buildOrResolveFromEnv()]
     }),
-    QueryModule
+    PhotoModule
   ],
   controllers: [],
   providers: []

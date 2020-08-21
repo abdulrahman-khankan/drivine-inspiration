@@ -1,1 +1,1 @@
-export { QueryModule } from './QueryModule';
+export { PhotoModule } from './PhotoModule';

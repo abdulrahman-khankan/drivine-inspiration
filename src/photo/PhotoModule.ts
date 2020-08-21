@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { QueryController } from './QueryController';
+import { PhotoController } from './PhotoController';
 import { PhotoRepository } from './PhotoRepository';
 
 @Module({
   providers: [PhotoRepository],
-  controllers: [QueryController]
+  controllers: [PhotoController]
 })
-export class QueryModule {}
+export class PhotoModule {}

@@ -11,7 +11,7 @@ export interface PhotoComment {
 }
 
 export class Photo {
-  /** Primary ID that preferably auto increments (if supported in chosen DB) */
+  /** Photo ID */
   readonly id: string;
   /** Photo caption */
   readonly caption: string;

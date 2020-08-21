@@ -4,7 +4,7 @@ import { PhotoRepository } from './PhotoRepository';
 import { Photo, PhotoLike, PhotoComment } from './Photo';
 
 @Controller('photo')
-export class QueryController {
+export class PhotoController {
   constructor(private readonly photoRepository: PhotoRepository) {}
 
   @Get(':id')
