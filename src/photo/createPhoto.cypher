@@ -1,4 +1,4 @@
-MERGE (photo: Photo {id: $id})
+MERGE (photo:Photo {id: $id})
 
 ON CREATE SET photo.date_created = datetime(),
 photo.date_updated = datetime()

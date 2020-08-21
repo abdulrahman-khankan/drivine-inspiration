@@ -3,13 +3,15 @@ import { DrivineModule, DrivineModuleOptions } from '@liberation-data/drivine/Dr
 import { DatabaseRegistry } from '@liberation-data/drivine/connection/DatabaseRegistry';
 
 import { PhotoModule } from './photo';
+import { CommentModule } from './comment';
 
 @Module({
   imports: [
     DrivineModule.withOptions(<DrivineModuleOptions>{
       connectionProviders: [DatabaseRegistry.buildOrResolveFromEnv()]
     }),
-    PhotoModule
+    PhotoModule,
+    CommentModule
   ],
   controllers: [],
   providers: []
