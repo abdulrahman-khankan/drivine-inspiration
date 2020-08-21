@@ -5,6 +5,7 @@ import { DatabaseRegistry } from '@liberation-data/drivine/connection/DatabaseRe
 import { PhotoModule } from './photo';
 import { CommentModule } from './comment';
 import { UserModule } from './user';
+import { HashtagModule } from './hashtag';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { UserModule } from './user';
     }),
     PhotoModule,
     CommentModule,
-    UserModule
+    UserModule,
+    HashtagModule
   ],
   controllers: [],
   providers: []

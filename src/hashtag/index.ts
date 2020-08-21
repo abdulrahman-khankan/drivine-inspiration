@@ -1,0 +1,1 @@
+export { HashtagModule } from './HashtagModule';
