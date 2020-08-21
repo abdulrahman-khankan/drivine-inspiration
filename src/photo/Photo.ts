@@ -1,5 +1,15 @@
 import { Expose } from 'class-transformer';
 
+export interface PhotoLike {
+  userId: string;
+  username: string;
+}
+
+export interface PhotoComment {
+  commentId: string;
+  text: string;
+}
+
 export class Photo {
   /** Primary ID that preferably auto increments (if supported in chosen DB) */
   readonly id: string;
