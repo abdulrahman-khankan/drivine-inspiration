@@ -14,9 +14,9 @@ interface SearchSpec {
 }
 
 const QUERIES: SearchSpec[] = [
-  { hashtag: 'sweden', limit: 30 },
-  { hashtag: 'germany', limit: 30 },
-  { hashtag: 'food', limit: 30 }
+  { hashtag: 'sweden', limit: 40 },
+  { hashtag: 'deutschland', limit: 40 },
+  { hashtag: 'food', limit: 40 }
 ];
 
 @Injectable()
@@ -45,7 +45,7 @@ export class PopulationService implements OnModuleInit {
       await this.populateHashtag(hashtag);
 
       const photos = await this.apiClient.getPhotos(hashtag, limit);
-      await this.populatePhotos(photos);
+      await this.populatePhotos(photos, hashtag);
 
       const photosWithComments = photos.filter(p => p.commentCount > 0);
       await this.populateComments(photosWithComments);
@@ -62,9 +62,9 @@ export class PopulationService implements OnModuleInit {
     await this.hashtagRepository.create({ id: hashtag });
   }
 
-  private async populatePhotos(photos: Photo[]): Promise<void> {
+  private async populatePhotos(photos: Photo[], hashtag: string): Promise<void> {
     for (const photo of photos) {
-      await this.photoRepository.create(photo);
+      await this.photoRepository.createWithHashtag(photo, hashtag);
     }
   }
 

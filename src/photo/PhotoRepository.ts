@@ -11,6 +11,7 @@ export class PhotoRepository {
   constructor(
     @InjectPersistenceManager() private readonly persistenceManager: PersistenceManager,
     @InjectCypher(__dirname, 'createPhoto') private readonly createPhoto: CypherStatement,
+    @InjectCypher(__dirname, 'createPhotoWithHashtag') private readonly createPhotoWithHashtag: CypherStatement,
     @InjectCypher(__dirname, 'photosForHashtag') private readonly photosForHashtag: CypherStatement,
     @InjectCypher(__dirname, 'photosForUser') private readonly photosForUser: CypherStatement,
     @InjectCypher(__dirname, 'photosForId') private readonly photosForId: CypherStatement,
@@ -51,6 +52,13 @@ export class PhotoRepository {
 
   async create(photo: Photo): Promise<Photo> {
     const spec = new QuerySpecification<Photo>().withStatement(this.createPhoto).bind({ ...photo });
+    return this.persistenceManager.getOne(spec);
+  }
+
+  async createWithHashtag(photo: Photo, hashtagId: string): Promise<Photo> {
+    const spec = new QuerySpecification<Photo>()
+      .withStatement(this.createPhotoWithHashtag)
+      .bind({ ...photo, hashtagId });
     return this.persistenceManager.getOne(spec);
   }
 }
