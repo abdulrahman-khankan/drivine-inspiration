@@ -25,3 +25,11 @@
 * First create a test DB named `neo4j-test` or modify that name in the `./env.test` file.
 * Run the `test/test-data.cypher` script to load the mock data in your test DB.
 * You can then run tests once with `npm test` or start the tests in watch mode with `npm run test:watch`.
+
+
+## TODOs & Future Improvements:
+* Add error handling, especially for external requests with the IG service.
+* Refactor paginated APIs in IG service and similar methods in the population service.
+* Look into refactoring the while loops into for loops or recursive calls.
+* Add unit tests.
+* Add a custom API to fetch a user by its userId as it's not available in the `instagram-web-api` package. This should be used in the `populateUsers` method in the `PopulationService`.
