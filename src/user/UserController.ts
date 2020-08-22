@@ -8,7 +8,7 @@ export class UserController {
   constructor(private readonly userRepository: UserRepository) {}
 
   @Get(':id')
-  async userById(@Param('id') id: string): Promise<User> {
+  async userById(@Param('id') id: string): Promise<User | undefined> {
     return this.userRepository.getById(id);
   }
 

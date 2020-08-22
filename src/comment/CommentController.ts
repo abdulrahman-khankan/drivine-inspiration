@@ -8,7 +8,7 @@ export class CommentController {
   constructor(private readonly commentRepository: CommentRepository) {}
 
   @Get(':id')
-  async commentById(@Param('id') id: string): Promise<Comment> {
+  async commentById(@Param('id') id: string): Promise<Comment | undefined> {
     return this.commentRepository.getById(id);
   }
 }

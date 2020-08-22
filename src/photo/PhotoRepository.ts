@@ -34,9 +34,9 @@ export class PhotoRepository {
     return this.persistenceManager.query(spec);
   }
 
-  async getById(photo_id: string): Promise<Photo> {
+  async getById(photo_id: string): Promise<Photo | undefined> {
     const spec = new QuerySpecification<Photo>().withStatement(this.photosForId).bind({ photo_id });
-    return this.persistenceManager.getOne(spec);
+    return this.persistenceManager.maybeGetOne(spec);
   }
 
   async getCommentsById(photo_id: string): Promise<PhotoComment[]> {

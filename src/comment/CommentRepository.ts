@@ -14,9 +14,9 @@ export class CommentRepository {
     @InjectCypher(__dirname, 'commentsForId') private readonly commentsForId: CypherStatement
   ) {}
 
-  async getById(comment_id: string): Promise<Comment> {
+  async getById(comment_id: string): Promise<Comment | undefined> {
     const spec = new QuerySpecification<Comment>().withStatement(this.commentsForId).bind({ comment_id });
-    return this.persistenceManager.getOne(spec);
+    return this.persistenceManager.maybeGetOne(spec);
   }
 
   /**

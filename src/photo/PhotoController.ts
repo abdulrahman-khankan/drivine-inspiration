@@ -8,7 +8,7 @@ export class PhotoController {
   constructor(private readonly photoRepository: PhotoRepository) {}
 
   @Get(':id')
-  async photoById(@Param('id') id: string): Promise<Photo> {
+  async photoById(@Param('id') id: string): Promise<Photo | undefined> {
     return this.photoRepository.getById(id);
   }
 

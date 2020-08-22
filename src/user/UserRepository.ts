@@ -16,9 +16,9 @@ export class UserRepository {
     @InjectCypher(__dirname, 'likesForUser') private readonly likesForUser: CypherStatement,
   ) {}
 
-  async getById(user_id: string): Promise<User> {
+  async getById(user_id: string): Promise<User | undefined> {
     const spec = new QuerySpecification<User>().withStatement(this.usersForId).bind({ user_id });
-    return this.persistenceManager.getOne(spec);
+    return this.persistenceManager.maybeGetOne(spec);
   }
 
   async getCommentsById(user_id: string): Promise<UserComment[]> {

@@ -121,6 +121,12 @@ user5.date_updated = datetime()
 ON MATCH SET user5.date_updated = datetime()
 SET user5.username = 'username-5'
 
+MERGE (user6: User {id: '6'})
+ON CREATE SET user6.date_created = datetime(),
+user6.date_updated = datetime()
+ON MATCH SET user6.date_updated = datetime()
+SET user6.username = 'username-6'
+
 
 
 
@@ -241,16 +247,14 @@ MERGE (user3)<-[like13:LIKED_BY]-(photo5)
 ON CREATE SET like13.date_created = datetime()
 MERGE (user4)<-[like14:LIKED_BY]-(photo5)
 ON CREATE SET like14.date_created = datetime()
-MERGE (user4)<-[like15:LIKED_BY]-(photo6)
+MERGE (user4)<-[like15:LIKED_BY]-(photo7)
 ON CREATE SET like15.date_created = datetime()
-MERGE (user4)<-[like16:LIKED_BY]-(photo7)
+MERGE (user4)<-[like16:LIKED_BY]-(photo8)
 ON CREATE SET like16.date_created = datetime()
-MERGE (user4)<-[like17:LIKED_BY]-(photo8)
+MERGE (user4)<-[like17:LIKED_BY]-(photo9)
 ON CREATE SET like17.date_created = datetime()
-MERGE (user4)<-[like18:LIKED_BY]-(photo9)
+MERGE (user4)<-[like18:LIKED_BY]-(photo10)
 ON CREATE SET like18.date_created = datetime()
-MERGE (user4)<-[like19:LIKED_BY]-(photo10)
-ON CREATE SET like19.date_created = datetime()
 
 
 MERGE (comment1)-[:BELONGS_TO]->(photo1)
