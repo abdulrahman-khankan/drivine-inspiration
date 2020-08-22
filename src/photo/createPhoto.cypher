@@ -1,13 +1,10 @@
 MERGE (photo:Photo {id: $id})
 
-ON CREATE SET photo.date_created = datetime(),
-photo.date_updated = datetime()
-
-ON MATCH SET photo.date_updated = datetime()
+ON CREATE SET photo.date_created = datetime($dateCreated)
 
 SET photo.caption = $caption,
-photo.location = point({latitude: $latitude, longitude: $longitude}),
-photo.image_path = $imagePath,
-photo.image_size = $imageSize
+    photo.image_path = $imagePath,
+    photo.height = $height,
+    photo.width = $width
 
 RETURN photo

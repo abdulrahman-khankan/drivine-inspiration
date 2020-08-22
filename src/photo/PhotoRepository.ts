@@ -49,10 +49,7 @@ export class PhotoRepository {
     return this.persistenceManager.query(spec);
   }
 
-  /**
-   * TODO: integrate this with the auto scrapping
-   */
-  private async create(photo: Photo): Promise<Photo> {
+  async create(photo: Photo): Promise<Photo> {
     const spec = new QuerySpecification<Photo>().withStatement(this.createPhoto).bind({ ...photo });
     return this.persistenceManager.getOne(spec);
   }

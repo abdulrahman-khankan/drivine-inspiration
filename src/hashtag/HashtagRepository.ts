@@ -19,10 +19,7 @@ export class HashtagRepository {
     return this.persistenceManager.query(spec);
   }
 
-  /**
-   * TODO: integrate this with the auto scrapping
-   */
-  private async create(hashtag: Hashtag): Promise<Hashtag> {
+  async create(hashtag: Hashtag): Promise<Hashtag> {
     const spec = new QuerySpecification<Hashtag>().withStatement(this.createHashtag).bind({ ...hashtag });
     return this.persistenceManager.getOne(spec);
   }

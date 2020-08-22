@@ -5,6 +5,7 @@ import { HashtagRepository } from './HashtagRepository';
 
 @Module({
   providers: [HashtagRepository],
-  controllers: [HashtagController]
+  controllers: [HashtagController],
+  exports: [HashtagRepository]
 })
 export class HashtagModule {}

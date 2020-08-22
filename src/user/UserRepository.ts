@@ -11,9 +11,11 @@ export class UserRepository {
   constructor(
     @InjectPersistenceManager() private readonly persistenceManager: PersistenceManager,
     @InjectCypher(__dirname, 'createUser') private readonly createUser: CypherStatement,
+    @InjectCypher(__dirname, 'createLike') private readonly createUserLike: CypherStatement,
+    @InjectCypher(__dirname, 'createPost') private readonly createUserPost: CypherStatement,
     @InjectCypher(__dirname, 'usersForId') private readonly usersForId: CypherStatement,
     @InjectCypher(__dirname, 'commentsForUser') private readonly commentsForUser: CypherStatement,
-    @InjectCypher(__dirname, 'likesForUser') private readonly likesForUser: CypherStatement,
+    @InjectCypher(__dirname, 'likesForUser') private readonly likesForUser: CypherStatement
   ) {}
 
   async getById(user_id: string): Promise<User | undefined> {
@@ -31,11 +33,18 @@ export class UserRepository {
     return this.persistenceManager.query(spec);
   }
 
-  /**
-   * TODO: integrate this with the auto scrapping
-   */
-  private async create(user: User): Promise<User> {
-    const spec = new QuerySpecification<User>().withStatement(this.createUser).bind({ ...user });
+  async create(user: User, photoId?: string): Promise<User> {
+    const spec = new QuerySpecification<User>().withStatement(this.createUser).bind({ ...user, photoId });
+    return this.persistenceManager.getOne(spec);
+  }
+
+  async createPost(user: User, photoId: string): Promise<User> {
+    const spec = new QuerySpecification<User>().withStatement(this.createUserPost).bind({ ...user, photoId });
+    return this.persistenceManager.getOne(spec);
+  }
+
+  async createLike(user: User, photoId: string): Promise<User> {
+    const spec = new QuerySpecification<User>().withStatement(this.createUserLike).bind({ ...user, photoId });
     return this.persistenceManager.getOne(spec);
   }
 }

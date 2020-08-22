@@ -5,6 +5,7 @@ import { CypherStatement } from '@liberation-data/drivine/query/Statement';
 import { QuerySpecification } from '@liberation-data/drivine/query/QuerySpecification';
 
 import { Comment } from './Comment';
+import { User } from '@/user/User';
 
 @Injectable()
 export class CommentRepository {
@@ -19,11 +20,8 @@ export class CommentRepository {
     return this.persistenceManager.maybeGetOne(spec);
   }
 
-  /**
-   * TODO: integrate this with the auto scrapping
-   */
-  private async create(comment: Comment): Promise<Comment> {
-    const spec = new QuerySpecification<Comment>().withStatement(this.createComment).bind({ ...comment });
+  async create(comment: Comment, user: User, photoId: string): Promise<Comment> {
+    const spec = new QuerySpecification<Comment>().withStatement(this.createComment).bind({ comment, user, photoId });
     return this.persistenceManager.getOne(spec);
   }
 }

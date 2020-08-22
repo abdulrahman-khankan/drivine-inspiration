@@ -5,6 +5,7 @@ import { PhotoRepository } from './PhotoRepository';
 
 @Module({
   providers: [PhotoRepository],
-  controllers: [PhotoController]
+  controllers: [PhotoController],
+  exports: [PhotoRepository]
 })
 export class PhotoModule {}

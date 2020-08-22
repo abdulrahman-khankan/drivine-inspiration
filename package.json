@@ -48,12 +48,14 @@
         "cls-hooked": "^4.2.2",
         "dotenv": "^8.1.0",
         "find-config": "^1.0.0",
+        "instagram-web-api": "^2.2.2",
         "lodash": "^4.17.19",
         "mississippi": "^4.0.0",
         "moment": "^2.24.0",
         "neo4j-driver": "^4.0.2",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^6.5.3",
+        "tough-cookie-filestore2": "^1.0.0",
         "uuid": "^3.3.2"
     },
     "devDependencies": {
