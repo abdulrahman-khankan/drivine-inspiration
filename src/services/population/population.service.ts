@@ -6,6 +6,8 @@ import { UserRepository } from '@/user/UserRepository';
 import { CommentRepository } from '@/comment/CommentRepository';
 import { PhotoRepository } from '@/photo/PhotoRepository';
 
+const POPULATE_REAL_DATA = process.env.POPULATE_REAL_DATA === 'TRUE';
+
 interface SearchSpec {
   hashtag: string;
   limit: number;
@@ -28,15 +30,17 @@ export class PopulationService implements OnModuleInit {
     private readonly photoRepository: PhotoRepository
   ) {
     this.logger.setContext('PopulationService');
-    this.logger.error('PopulationService initialized');
   }
 
   async onModuleInit(): Promise<void> {
-    await this.populateData();
-    this.logger.debug('initializing PopulationService');
+    if (POPULATE_REAL_DATA) {
+      this.logger.warn('Data population started.');
+      await this.populateData()
+      this.logger.warn('Data population completed.');
+    }
   }
 
-  private async populateData(): Promise<void> {
+  async populateData(): Promise<void> {
     for (const { hashtag, limit } of QUERIES) {
       await this.populateHashtag(hashtag);
 

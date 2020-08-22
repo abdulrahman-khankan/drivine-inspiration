@@ -25,7 +25,6 @@ export class InstagramService implements OnModuleInit {
 
   constructor(private readonly logger: Logger) {
     this.logger.setContext('InstagramService');
-    this.logger.error('InstagramService initialized');
   }
 
   /**
@@ -138,6 +137,7 @@ export class InstagramService implements OnModuleInit {
 
   async onModuleInit(): Promise<void> {
     await this.login();
+    this.logger.log('Initialized');
   }
 
   private async login(): Promise<void> {
